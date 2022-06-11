@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Canvas intros01
+		</title>
+		
+		<script>
+			function draw()
+			{
+				var canvas = document.getElementById('tutorial');
+				if(canvas.getContext)
+				{
+					var ctx = canvas.getContext('2d');
+				}
+				else
+				{
+				}
+			}
+		</script>
+		
+		<style type="text/css">
+			canvas { border: 1px solid black; }
+			p {color:green;}
+		</style>
+	</head>
+	
+	<body>
+		<canvas id = "tutorial" width="150px" height="150px"> </canvas>
+		<p>Hello Friend</p>
+	</body>
+</html>

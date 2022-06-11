@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <script>
+	
+	function draw()
+	{
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext)
+		{
+			var ctx = canvas.getContext('2d');
+			
+			var lStart = 50;
+			var lEnd = 200;
+			var yStart = 20;
+			ctx.beginPath();
+			ctx.lineWidth = 25;
+			
+			ctx.lineJoin = "bevel";
+			ctx.moveTo(50, 20);
+			ctx.lineTo(150, 20);
+			ctx.lineTo(150, 120);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.lineJoin = "round";
+			ctx.moveTo(50, 140);
+			ctx.lineTo(150, 140);
+			ctx.lineTo(150, 260);
+			ctx.stroke();
+		
+			ctx.beginPath();
+			ctx.lineJoin = "miter";
+			ctx.moveTo(50, 280);
+			ctx.lineTo(150, 280);
+			ctx.lineTo(150, 400);
+			ctx.stroke();
+		}
+		
+	}
+  
+  </script>
+  </head>
+  
+  <body onload= "draw();">
+	<canvas id ="canvas" width ="150" height="200"></canvas>
+  </body>
+  
+</htm
