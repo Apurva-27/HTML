@@ -1,1 +1,9 @@
 https://dev.mysql.com/get/archives/mysql-8.0/mysql-8.0.23-1.el7.x86_64.rpm-bundle.tar
+# rpm -Uvh mysql-community-common-8.0.23-1.el7.x86_64.rpm --nodeps
+# rpm -Uvh mysql-community-client-plugins-8.0.23-1.el7.x86_64.rpm --nodeps 
+# yum -y remove mariadb-libs 
+# rpm -Uvh mysql-community-libs-8.0.23-1.el7.x86_64.rpm --nodeps
+# rpm -Uvh mysql-community-libs-compat-8.0.23-1.el7.x86_64.rpm --nodeps
+# rpm -Uvh mysql-community-client-8.0.23-1.el7.x86_64.rpm --nodeps
+# rpm -Uvh mysql-community-server-8.0.23-1.el7.x86_64.rpm --nodeps
+# rpm -Uvh mysql-community-server-8.0.23-1.el7.x86_64.rpm --nodeps
