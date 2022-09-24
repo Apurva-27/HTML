@@ -1,0 +1,125 @@
+10)Installation of Database application
+Common Prerequisite :
+	1. Centos 7.9(RHEL) should be already installed  on machine with the following architecture.  
+                      RAM:   2 GB RAM
+                      HD:   10 GB Avg local disk storage.
+                      Software requirement:  GOLANG (go1.11.5 linux/amd64) 
+1. MySQL
+	Prerequisite for MySQL
+	i.Tar file of MySql which contains RPM files must be downloaded from the below URL:
+	URL:https://dev.mysql.com/get/archives/mysql-8.0/mysql-8.0.23-1.el7.x86_64.rpm-bundle.tar
+	Steps to install mysql:
+	i.Make dirctory in /tmp/ for mysql rpm
+            # mkdir /tmp/mysql
+	ii.Untar the mysql-8.0.23-1.el7.x86_64.rpm-bundle.tar and move to /tmp/mysq l by  using below command.
+           # tar -xvf <download_dir>/mysql-8.0.23-1.el7.x86_64.rpm-bundle.tar -C /tmp/mysql
+	iii.Install untared rpm's:
+          # cd /tmp/mysql
+          # rpm -Uvh mysql-community-common-8.0.23-1.el7.x86_64.rpm --nodeps
+          # rpm -Uvh mysql-community-client-plugins-8.0.23-1.el7.x86_64.rpm --nodeps 
+          # yum -y remove mariadb-libs 
+          # rpm -Uvh mysql-community-libs-8.0.23-1.el7.x86_64.rpm --nodeps
+          # rpm -Uvh mysql-community-libs-compat-8.0.23-1.el7.x86_64.rpm --nodeps
+		  # rpm -Uvh mysql-community-client-8.0.23-1.el7.x86_64.rpm --nodeps
+          # rpm -Uvh mysql-community-server-8.0.23-1.el7.x86_64.rpm --nodeps
+          # rpm -Uvh mysql-community-server-8.0.23-1.el7.x86_64.rpm --nodeps
+
+2. MariaDB
+	Prerequisite for MariaDB
+	i.RPM files of mariadb must be downloaded from below URL:
+	URL:
+	1. https://archive.mariadb.org/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-client-5.2.5-99.el5.x86_64.rpm
+	2. https://archive.mariadb.org/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-debuginfo-5.2.5-99.el5.x86_64.rpm
+	3. https://archive.mariadb.org/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-devel-5.2.5-99.el5.x86_64.rpm
+	4. https://archive.mariadb.org/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-server-5.2.5-99.el5.x86_64.rpm
+	5. https://archive.mariadb.org/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-shared-5.2.5-99.el5.x86_64.rpm
+	6. https://archive.mariadb.org/mariadb-5.2.5/kvm-rpm-centos5-amd64/rpms/MariaDB-test-5.2.5-99.el5.x86_64.rpm
+	
+	Steps to install MariaDB :
+	1.Install MariaDB packages by using below command:
+            # rpm -Uvh MariaDB-client-5.2.5-99.el5.x86_64.rpm --nodeps
+            # rpm -Uvh MariaDB-debuginfo-5.2.5-99.el5.x86_64.rpm --nodeps
+			# rpm -Uvh MariaDB-devel-5.2.5-99.el5.x86_64.rpm --nodeps
+			# rpm -Uvh MariaDB-server-5.2.5-99.el5.x86_64.rpm --nodeps
+			# rpm -Uvh MariaDB-shared-5.2.5-99.el5.x86_64.rpm --nodeps
+			# rpm -Uvh MariaDB-test-5.2.5-99.el5.x86_64.rpm --nodeps
+
+3. PostgreSQL
+	Prerequisite for PostgreSQL
+	i.RPM files of mariadb must be downloaded from below URL:
+	URL:  https://rpmfind.net/linux/centos/7.9.2009/os/x86_64/Packages/libicu-50.2-4.el7_7.x86_64.rpm
+		  https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-7-x86_64/postgresql12-12.12-1PGDG.rhel7.x86_64.rpm
+		  https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-7-x86_64/postgresql12-libs-12.12-1PGDG.rhel7.x86_64.rpm
+		  https://download.postgresql.org/pub/repos/yum/12/redhat/rhel-7-x86_64/postgresql12-server-12.12-1PGDG.rhel7.x86_64.rpm
+    Steps to install PostgreSQL:
+	i.Install PostgreSQL packages by using below command:
+		  # rpm -Uvh libicu-50.2-4.el7_7.x86_64.rpm --nodeps
+		  # rpm -Uvh postgresql12-12.12-1PGDG.rhel7.x86_64.rpmm --nodeps
+		  # rpm -Uvh postgresql12-libs-12.12-1PGDG.rhel7.x86_64.rpm --nodeps
+		  # rpm -Uvh postgresql12-server-12.12-1PGDG.rhel7.x86_64.rpm --nodeps
+----------------------------------------------------------------------------------------------------------------------------------
+11)Configure of Database application
+Prerequisite: 
+    i) Same as Installation of Database application
+	ii) Step 10 must be performed 
+1. MySQL
+	i.  Execute below command to configure my.cnf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		#vi /etc/my.cnf
+	
+Note: For my.cnf file please refer attached file in apendix.
+
+2. MariaDB
+	i.  Execute below command to configure my.cnf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		#vi  vi /usr/lib/systemd/system/mariadb.service
+Note: For mariadb.service file please refer attached file in apendix.		
+
+3. PostgreSQL
+	i.  Execute below command to configure pg_hba.conf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		#vi  vi /var/lib/pgsql/12/data/pg_hba.conf
+		
+	i.  Execute below command to configure postgresql.conf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		#vi  vi /var/lib/pgsql/12/data/postgresql.conf
+		
+Note: For pg_hba.conf and postgresql.conf file please refer attached file in apendix.	
+----------------------------------------------------------------------------------------------------------------------------------
+12)Start of Database application
+Prerequisite: 
+    i) Same as Installation of Database application
+	ii) Step 11 must be performed 
+	
+1. MySQL
+	i.Start the mysql service:
+        # systemctl start mysqld
+	ii.Verification:
+	Enter the below command to check mysql is in active state.
+        # systemctl status mysqld
+
+2. MariaDB
+	i.Enable and start service of MariaDB by using the below command:
+                 # systemctl start mariadb
+                 # systemctl enable mariadb
+	ii.secure your MariaDB by setting root password  by using the below command:
+                 # mysql_secure_installation
+	Verification: 
+	Verify status of MariaDB by using the below command:
+                 # systemctl status mariadb
+
+3. PostgreSQL
+	i.Initialize the database and enable automatic start:
+                # sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+                # sudo systemctl enable postgresql-12
+                # sudo systemctl start postgresql-12
+Verification: 
+	i.To verify postgresql use below command:
+                # sudo systemctl status postgresql-12
+
+----------------------------------------------------------------------------------------------------------------------------------
+13)Deploy of Database application
+
+1. MySQL
+
+--------------------------------------------------------------------------------------------------
+2. MariaDB
+
+--------------------------------------------------------------------------------------------------
+3. PostgreSQL
