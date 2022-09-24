@@ -1,0 +1,138 @@
+1)Installation of web application
+Common Prerequisite :
+1. Centos 7.9(RHEL) should be already installed  on machine with the following architecture.  
+                      RAM:   2 GB RAM
+                      HD:   10 GB Avg local disk storage.
+                      Software requirement:  GOLANG (go1.11.5 linux/amd64) 
+2.For Nginx
+Prerequisite for Nginx
+	i. Download the 'nginx-debuginfo-1.23.1-1.el7.ngx.x86_64.rpm'  from the below link.
+	URL: https://nginx.org/packages/mainline/centos/7/x86_64/RPMS/nginx-debuginfo-1.23.1-1.el7.ngx.x86_64.rpm
+	ii. Copy the downloaded file 'nginx-debuginfo-1.23.1-1.el7.ngx.x86_64.rpm' in specific directory.(Eg. <pkg_dir>= /root/) 
+
+	iii.Steps to install nginx:
+	Execute the below command to install the Nginx.
+            # <pkg_dir>/ rpm -ivh nginx-debuginfo-1.23.1-1.el7.ngx.x86_64.rpm --nodeps
+
+	iv. Verification of nginx: 
+	Execute the below command to verify the Nginx installation.
+            # rpm -qa | grep nginx
+
+
+3)For Apache
+Prerequisite for Apache
+	i. Download the 'apr-1.4.8-7.el7.x86_64.rpm, apr-util-1.5.2-6.el7.x86_64.rpm,  httpd-2.4.6-97.el7.centos.5.x86_64.rpm ,httpd-tools-2.4.6-97.el7.centos.5.x86_64.rpm, mailcap-2.1.41-2.el7.noarch.rpm, unzip-6.0-24.el7_9.x86_64.rpm, nginx-1.17.6-1.el7.ngx.x86_64.rpm' 
+	URL:  http://mirror.centos.org/centos/7/os/x86_64/Packages/apr-1.4.8-7.el7.x86_64.rpm
+		http://mirror.centos.org/centos/7/os/x86_64/Packages/apr-util-1.5.2-6.el7.x86_64.rpm
+		http://mirror.centos.org/centos/7/updates/x86_64/Packages/httpd-2.4.6-97.el7.centos.5.x86_64.rpm
+		http://mirror.centos.org/centos/7/updates/x86_64/Packages/httpd-2.4.6-97.el7.centos.5.x86_64.rpm
+		http://mirror.centos.org/centos/7/os/x86_64/Packages/mailcap-2.1.41-2.el7.noarch.rpm
+		https://rpmfind.net/linux/centos/7.9.2009/updates/x86_64/Packages/unzip-6.0-24.el7_9.x86_64.rpm
+		https://nginx.org/packages/mainline/rhel/7/x86_64/RPMS/nginx-1.17.6-1.el7.ngx.x86_64.rpm
+	ii. Copy the downloaded file in specific directory.(Eg. <pkg_dir>= /root/) 
+			
+	iii. Install apache
+       # <pkg_dir>/ rpm -ivh apr-1.4.8-7.el7.x86_64.rpm --nodeps
+	   # <pkg_dir>/ rpm -ivh apr-util-1.5.2-6.el7.x86_64.rpm --nodeps
+	   # <pkg_dir>/ rpm -ivh httpd-2.4.6-97.el7.centos.5.x86_64.rpm --nodeps
+	   # <pkg_dir>/ rpm -ivh httpd-tools-2.4.6-97.el7.centos.5.x86_64.rpm --nodeps
+	   # <pkg_dir>/ rpm -ivh mailcap-2.1.41-2.el7.noarch.rpm --nodeps
+	   # <pkg_dir>/ rpm -ivh unzip-6.0-24.el7_9.x86_64.rpm --nodeps
+	   # <pkg_dir>/ rpm -ivh nginx-1.17.6-1.el7.ngx.x86_64.rpm --nodeps   
+	iv. Verification: 
+	Execute the below command to verify the apache installation.
+		rpm -qa | grep httpd
+		rpm -qa | grep apr 
+        rpm -qa | grep mailcap
+-------------------------------------------------------------------------------------------------------------------------------
+2)Configuration of web application
+
+Prerequisite: 
+    i) Same as Installation web application
+	ii) Step 1 must be performed 
+1. Nginx
+
+    i.  Execute below command to configure nginx.conf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		# vi /etc/nginx/nginx.conf
+
+	ii. Execute below command to configure nginxjhoomla.conf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		# vi /etc/nginx/conf.d/nginxjhoomla.conf
+
+Note: For nginx.conf and nginxjhoomla.conf files please refer attached file in apendix.   
+		
+2. Apache
+
+	i. Execute below command to configure httpd.conf file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		# vi /etc/httpd/conf/httpd.conf
+	ii.Execute below command to configure httpd.service file.Configure the parameters as per configuration file attached in apendix, save the file and exit.
+		# vi /usr/lib/systemd/system/httpd.service
+Note: For httpd.conf and httpd.service files please refer attached file in apendix.
+
+----------------------------------------------------------------------------------------------------------------------------------
+3)Start web application 
+
+Prerequisite: 
+	i) Same as Installation web application
+	ii) Step 2 must be performed 
+	
+1. Nginx
+Prerequisite for Nginx
+	i. Nginx should be installed.
+	ii. nginx.conf flie and nginxjhoomla.conf file should be configured.
+
+Command : 
+	Execute the below command to strart the nginx.
+		# systemctl restart nginx
+		# systemctl status nginx
+2. Apache
+Prerequisite for Apache
+	i. Apache should be installed.
+	ii. httpd.conf flie and httpd.service file should be configured.	
+		
+Command	:
+	Execute the below command to strart the apache.
+		# cd /usr/local/apache/bin
+		# ./apachectl start 
+----------------------------------------------------------------------------------------------------------------------------------
+4)Deploy web application 
+
+Prerequisite: 
+	i) Same as Installation web application
+	ii) Step 3 must be performed 		
+1. Nginx
+Prerequisite for Nginx
+	i. Nginx should be installed.
+	ii. nginx.conf flie and nginxjhoomla.conf file should be configured.
+	iii.'nginx' Service should ne running.
+    iv.test.html file should be created and placed inside '/user/share/nginx/html' directory.
+
+Command	:
+	Deploy file must be present at below location.
+	cd /user/share/nginx/html
+	We can also deploy the application using web browser. Follow the below steps:
+	steps:
+	    a. Open web browser.
+		b. Type below URL:
+		http://<server_ip>
+		c. Press 'ENTER' key.
+		d. After pressing 'ENTER' key, we can see the web page.
+
+2. Apache
+Prerequisite for Apache
+	i. Apache should be installed.
+	ii. httpd.conf flie and httpd.service file should be configured.		
+	iii.'httpd' Service should ne running.
+    iv.test.html file should be created and placed inside '/var/ww/html' directory.
+	
+Command	 :	
+	Deploy file must be present at below location.
+	cd /var/ww/html
+	We can also deploy the application using web browser. Follow the below steps:
+	steps:
+	    a. Open web browser.
+		b. Type below URL:
+		http://<server_ip>
+		c. Press 'ENTER' key.
+		d. After pressing 'ENTER' key, we can see the web page.
+		
+		
