@@ -117,7 +117,8 @@ Verification:
 13)Deploy of Database application
 
 1. MySQL
-
+mysql -u root -p Apurva@123 -e "CREATE DATABASE IF NOT EXISTS TestDB1;" > /dev/null
+         mysql -uroot -pP@ssw0rd TestDB < /tmp/test.sql
 --------------------------------------------------------------------------------------------------
   2.MariaDB
   i.)File to be deployed(test.sql) must be present in download_dir.(e.g /tmp/)
