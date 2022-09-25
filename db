@@ -119,7 +119,25 @@ Verification:
 1. MySQL
 
 --------------------------------------------------------------------------------------------------
-2. MariaDB
+  2.MariaDB
+  i.)File to be deployed(test.sql) must be present in download_dir.(e.g /tmp/)
+  ii)Execute the below command to create a database.
+   Command:
+          # mysql -e "CREATE DATABASE IF NOT EXISTS <db_name>;" > /dev/null
+  iii.)Execute the below command to deploy the file in the created database.
+           # mysql -u <db_user> <db_name> <download_dir>/<file_name_to_be_deploy_in_datatbase>
+    Verification:
+  i.)Verify the deploy file present in download_dir.
+           # cd  <download_dir>
+           # ll
+  ii.)Verify User login in mysql by using the below command.
+           # mysql -u <db_user>
+  iii.)Verify database is created.
+           # SHOW DATABASES;
+  iv.) Verify that all tables should be created in above Database.
+           # User  <db_name>;
+           # SHOW TABLES
+  Deploy table must be present in table list.
 
 --------------------------------------------------------------------------------------------------
 3. PostgreSQL
